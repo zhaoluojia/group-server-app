@@ -1,12 +1,16 @@
-import mongoose from "mongoose";
 import express from 'express';
 import cors from 'cors';
+import mongoose from "mongoose";
 import UsersController from "./users/users-controller.js";
+import RestaurantsController from "./resteaurants/restaurants-controller.js";
+import ReviewsController from "./reviews/reviews-controller.js";
 
-mongoose.connect('mongodb+srv://luojiazhao:wWvgUnODWbFEeIn7@yealp-db.iarbu28.mongodb.net/yealp');
-
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(cors());
 app.use(express.json());
 UsersController(app);
-app.listen(4000);
+RestaurantsController(app);
+ReviewsController(app);
+app.listen(process.env.PORT || 4000);
