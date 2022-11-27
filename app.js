@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import ReviewsController from "./reviews/reviews-controller.js";
 
 
-const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb+srv://chuwang:7o5h1TgotOILKfEJ@yealp-db.iarbu28.mongodb.net/yealp';
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(cors());
