@@ -1,5 +1,4 @@
 import * as dao from './users-dao.js';
-import {findByUsername} from "./users-dao.js";
 
 // let currentUser = null
 
@@ -9,6 +8,14 @@ const UsersController = (app) => {
   //   const actualUser = await dao.createUser(user)
   //   res.json(actualUser)
   // }
+
+  const findUserByID = async (req, res) => {
+    const uid = req.params.uid;
+    const user = await dao.findUserById(uid);
+    res.json(user)
+  };
+
+
   const findAllUsers = async (req, res) => {
     const users = await dao.findAllUsers()
     res.json(users)
@@ -27,7 +34,7 @@ const UsersController = (app) => {
   //
   const register = async (req, res) => {
     const user = req.body
-    const existingUser = await findByUsername(user.username)
+    const existingUser = await dao.findByUsername(user.username)
     if (existingUser) {
       res.sendStatus(403)
       return
@@ -61,8 +68,11 @@ const UsersController = (app) => {
   //   res.sendStatus(200)
   // }
 
+
+
   // app.post('/users', createUser)
   app.get('/api/users', findAllUsers)
+  app.get('/api/users/:uid', findUserByID)
   // app.delete('/users/:uid', deleteUser)
   // app.put('/users/:uid', updateUser)
   //

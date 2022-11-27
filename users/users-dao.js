@@ -6,9 +6,9 @@ export const createUser = (user) =>
 export const findAllUsers = () =>
     usersModel.find()
 
-// export const findUserById = (uid) =>
-//     usersModel.findById(uid)
-//
+export const findUserById = (uid) =>
+    usersModel.findById(uid)
+
 export const findByUsername = (username) =>
     usersModel.findOne({username})
 

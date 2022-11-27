@@ -12,8 +12,8 @@ const userSchema = mongoose.Schema({
   bio: {type: String, default: ""}, // admin don't have bio
   role: {type: String, enum: ['CUSTOMER', 'ADMIN', 'OWNER'], required: true},
   location: {type: String, required: true},
-  dateOfBirth: {type: String, required: true},
-  dateJoined: {type: String, required: true, default: (new Date()).toLocaleDateString()},
+  dateOfBirth: {type: Date, required: true},
+  dateJoined: {type: Date, required: true, default: new Date()},
   password: {type: String, required: true},
   followersCount: {type: Number, default: 0}, // admin and owners don't have followers and people to follow
   followingCount: {type: Number, default: 0}, // admin and owners don't have followers and people to follow
