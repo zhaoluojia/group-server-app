@@ -24,7 +24,21 @@ const disConnectOwnerAndRestaurant = async (req, res) => {
   res.send(status);
 }
 
+const findRestaurantsByRestaurantName = async (req, res) => {
+  const rName = req.params.name;
+  const restaurant = await restaurantsDao.findRestaurantsByRestaurantName(rName);
+  res.json(restaurant);
+}
+
+const findRestaurantsByCategory = async (req, res) => {
+  const c = req.params.c;
+  const restaurant = await restaurantsDao.findRestaurantsByCategory(c);
+  res.json(restaurant);
+}
+
 export default (app) => {
+  app.get('/api/restaurants/category/:c', findRestaurantsByCategory);
+  app.get('/api/restaurants/name/:rName', findRestaurantsByRestaurantName);
   app.get('/api/restaurants/:rid', findRestaurantByRestaurantID);
   app.get('/api/restaurants', findAllRestaurants);
   app.get('/api/restaurants/owners/:oid', findRestaurantsByOwnerID);
