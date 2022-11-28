@@ -12,7 +12,7 @@ export const findUserById = async (uid) =>
 export const findByUsername = async (username) =>
     await usersModel.findOne({username})
 
-export const findByCredentials = async (username, password) =>
+export const findByCredentials = async ({username, password}) =>
     await usersModel.findOne(
         {username, password},
         {password: false})
