@@ -50,6 +50,13 @@ const UsersController = (app) => {
     res.sendStatus(200)
   }
 
+  const updateCurrentUserProfileByUserName = async (req, res) => {
+    const newProfile = req.body;
+    const uname = req.params.uname;
+    const status = await dao.updateCurrentUserProfileByUserName(uname, newProfile);
+    res.send(status)
+  }
+
   app.get('/api/users', findAllUsers)
   app.get('/api/users/:uid', findUserByID)
 
@@ -57,6 +64,8 @@ const UsersController = (app) => {
   app.post('/api/login', login)
   app.post('/api/profile', profile)
   app.post('/api/logout', logout)
+
+  app.put('/api/users/username/:uname', updateCurrentUserProfileByUserName)
 }
 
 export default UsersController
