@@ -6,14 +6,27 @@ const findAllReviewsByUserID = async (req, res) => {
   res.json(reviews);
 };
 
-const findReviewByRestaurantID =async (req, res) => {
+const findReviewByRestaurantID = async (req, res) => {
   const rid = req.params.rid;
   const reviews = await reviewsDao.findReviewByRestaurantID(rid);
   res.json(reviews)
 }
 
+const findAllReviews = async (req, res) => {
+  const reviews = await reviewsDao.findAllReviews();
+  res.json(reviews)
+};
+
+const deleteReviewByID = async (req, res) => {
+  const rid = req.params.rid;
+  const status = await reviewsDao.deleteReviewByID(rid);
+  res.send(status);
+}
+
 export default (app) => {
+  app.get('/api/reviews', findAllReviews);
   app.get('/api/reviews/owners/:oid', findAllReviewsByUserID);
   app.get('/api/reviews/restaurant/:rid', findReviewByRestaurantID);
+  app.delete('/api/reviews/:rid', deleteReviewByID);
 };
 
