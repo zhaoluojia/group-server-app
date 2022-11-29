@@ -16,3 +16,8 @@ export const findByCredentials = async ({username, password}) =>
     await usersModel.findOne(
         {username, password},
         {password: false})
+
+export const updateCurrentUserProfileByUserName = async (uname, user) => {
+  console.log(JSON.stringify(user))
+  await usersModel.updateOne({username: uname},{$set: user})
+}
