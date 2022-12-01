@@ -36,6 +36,23 @@ const findRestaurantsByCategory = async (req, res) => {
   res.json(restaurant);
 }
 
+const findRestaurantByYelpId = async (req, res) => {
+  const yid = req.params.yid;
+  const restaurant = await restaurantsDao.findRestaurantByYelpId(yid);
+  res.json(restaurant);
+}
+
+const createRestaurant = async (req, res) => {
+  const newRestaurant = req.body;
+  // const yid = req.params.yid;
+  // const restaurant = restaurantsDao.findRestaurantByYelpId(yid);
+  // if(restaurant === null) {
+  const insertedRestaurant = await restaurantsDao.createRestaurant(newRestaurant);
+  res.json(insertedRestaurant);
+  // }
+
+}
+
 export default (app) => {
   app.get('/api/restaurants/category/:c', findRestaurantsByCategory);
   app.get('/api/restaurants/name/:rName', findRestaurantsByRestaurantName);
@@ -43,4 +60,6 @@ export default (app) => {
   app.get('/api/restaurants', findAllRestaurants);
   app.get('/api/restaurants/owners/:oid', findRestaurantsByOwnerID);
   app.put('/api/restaurants/disconnect/:rid', disConnectOwnerAndRestaurant);
+  app.get('/api/restaurants/yelpID/:yid', findRestaurantByYelpId);
+  app.post('/api/restaurants', createRestaurant);
 };

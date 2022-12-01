@@ -9,6 +9,7 @@ const restaurantsSchema = mongoose.Schema({
   display_phone: {type: String, required: true},
   owners: {type: [String], required: true}, // could have many owners, so use array here
   reviews: {type: [String], required: true}, // array of reviewID
+  yelpID: {type: String, required: true},
 }, {collection: 'restaurants', versionKey: false});
 
 export default restaurantsSchema;
