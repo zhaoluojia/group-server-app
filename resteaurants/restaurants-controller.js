@@ -86,9 +86,8 @@ const createRestaurant = async (req, res) => {
   const insertedRestaurant = await restaurantsDao.createRestaurant(newRestaurant);
   res.json(insertedRestaurant);
   // }
+
 }
-
-
 
 export default (app) => {
   app.get('/api/restaurants/category/:c', findRestaurantsByCategory);
