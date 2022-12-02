@@ -49,12 +49,28 @@ const findRestaurantsByRequestUsingYF = async (req, res) => {
     location: req.params.rlocation
   }
   client.search(searchRequest).then(response => {
-    const firstResult = response.jsonBody;
-    res.json(firstResult);
+    const result = response.jsonBody;
+    res.json(result);
   }).catch(e => {
     res.json(e);
   });
 }
+
+const findRestaurantsByRequestIDUsingYF = async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept");
+
+  const yelpID = req.params.yid;
+  client.business(yelpID).then(response => {
+    const result = response.jsonBody;
+    res.json(result);
+  }).catch(e => {
+    res.json(e);
+  });
+}
+// Yelp related search ends here
+
 
 const findRestaurantByYelpId = async (req, res) => {
   const yid = req.params.yid;
@@ -78,6 +94,7 @@ export default (app) => {
   app.get('/api/restaurants/name/:rName', findRestaurantsByRestaurantName);
   app.get('/api/restaurants/:rid', findRestaurantByRestaurantID);
   app.get('/api/restaurants', findAllRestaurants);
+  app.get('/api/restaurants/search/yelpid/:yid', findRestaurantsByRequestIDUsingYF) // YelpFusionAPI
   app.get('/api/restaurants/search/:rname/:rlocation', findRestaurantsByRequestUsingYF); // YelpFusionAPI
   app.get('/api/restaurants/owners/:oid', findRestaurantsByOwnerID);
   app.put('/api/restaurants/disconnect/:rid', disConnectOwnerAndRestaurant);
