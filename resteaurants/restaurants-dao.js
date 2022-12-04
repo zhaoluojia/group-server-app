@@ -6,5 +6,8 @@ export const findRestaurantsByOwnerID = (oid) => restaurantsModel.find({owners: 
 export const disConnectOwnerAndRestaurant = (ownerList, rid) => restaurantsModel.updateOne({_id: rid}, {$set: {owners: ownerList}});
 export const findRestaurantsByRestaurantName = (rName) => restaurantsModel.find({name: rName});
 export const findRestaurantsByCategory = (c) => restaurantsModel.find({category: c});
-export const findRestaurantByYelpId = (yid) => restaurantsModel.find({yelpID: yid});
-export const createRestaurant = (restaurant) => restaurantsModel.create(restaurant);
+export const findRestaurantByYelpId = (yid) => restaurantsModel.findOne({yelpID: yid});
+export const createRestaurant = (restaurant) =>
+  restaurantsModel.create(restaurant)
+  .then((r) => r)
+  .catch(() => null);
