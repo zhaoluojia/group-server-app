@@ -83,7 +83,7 @@ const findRestaurantByYelpId = async (req, res) => {
 
 const createRestaurant = async (req, res) => {
   const newRestaurant = req.body;
-  const inserted = await restaurantsDao.createRestaurant(newRestaurant);
+  const inserted = await restaurantsDao.createRestaurant(newRestaurant); // could be undefined
   res.json(inserted);
 }
 
