@@ -18,10 +18,10 @@ const findRestaurantsByOwnerID = async (req, res) => {
   res.json(restaurant);
 };
 
-const disConnectOwnerAndRestaurant = async (req, res) => {
+const updateOwnerAndRestaurantRelationship = async (req, res) => {
   const rid = req.params.rid;
   const ownerID = req.body;
-  const status = await restaurantsDao.disConnectOwnerAndRestaurant(ownerID,
+  const status = await restaurantsDao.updateOwnerAndRestaurantRelationship(ownerID,
       rid);
   res.send(status);
 }
@@ -97,7 +97,7 @@ export default (app) => {
   app.get('/api/restaurants/search/:rname/:rlocation',
       findRestaurantsByRequestUsingYF); // YelpFusionAPI
   app.get('/api/restaurants/owners/:oid', findRestaurantsByOwnerID);
-  app.put('/api/restaurants/disconnect/:rid', disConnectOwnerAndRestaurant);
+  app.put('/api/restaurants/update/:rid', updateOwnerAndRestaurantRelationship);
   app.get('/api/restaurants/yelpID/:yid', findRestaurantByYelpId);
   app.post('/api/restaurants', createRestaurant);
 };
