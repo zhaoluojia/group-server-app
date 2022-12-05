@@ -1,7 +1,5 @@
 import * as dao from './users-dao.js';
 
-// let currentUser = null
-
 const UsersController = (app) => {
   const findUserByID = async (req, res) => {
     const uid = req.params.uid;
