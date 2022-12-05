@@ -4,7 +4,7 @@ export const createUser = async (user) =>
     await usersModel.create(user)
 
 export const findAllUsers = async () =>
-    await usersModel.find()
+    await usersModel.find().sort({dateJoined: "desc"});
 
 export const findUserById = async (uid) =>
     await usersModel.findById(uid)
