@@ -1,6 +1,6 @@
 import * as dao from './users-dao.js';
 
-let currentUser = null
+// let currentUser = null
 
 const UsersController = (app) => {
   const findUserByID = async (req, res) => {
@@ -37,7 +37,7 @@ const UsersController = (app) => {
     res.sendStatus(403)
   }
 
-  const profile = async (req, res) => {
+  const profile = (req, res) => {
     if (req.session['currentUser']) {
       res.send(req.session['currentUser'])
     } else {

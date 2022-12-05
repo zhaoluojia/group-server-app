@@ -28,14 +28,17 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }));
 app.use(session({
-  secret: process.env.DB_CONNECTION_STRING,
+  secret: 'thisismysecrctekeyfhrgfgrfrty84fwir767', //TODO: change this to a environment variable
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: {
+    secure: false,
+    httpOnly: false
+  }
 }))
 app.use(express.json());
-UsersController(app);
 SessionController(app)
+UsersController(app);
 RestaurantsController(app);
 ReviewsController(app);
 FollowsController(app);
