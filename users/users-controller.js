@@ -1,4 +1,8 @@
 import * as dao from './users-dao.js';
+import {
+  updateUserFollowerCountByUserID,
+  updateUserFollowingCountByUserID
+} from "./users-dao.js";
 
 const UsersController = (app) => {
   const findUserByID = async (req, res) => {
@@ -55,6 +59,20 @@ const UsersController = (app) => {
     res.send(status)
   }
 
+  const increaseUserFollowerCountByUserID = async (req, res) => {
+    const uid = req.params.uid;
+    const user = await dao.findUserById(uid);
+    const status = await dao.updateUserFollowerCountByUserID(uid, user.followersCount + 1);
+    res.send(status)
+  }
+
+  const increaseUserFollowingCountByUserID = async (req, res) => {
+    const uid = req.params.uid;
+    const user = await dao.findUserById(uid);
+    const status = await dao.updateUserFollowingCountByUserID(uid, user.followingCount + 1);
+    res.send(status)
+  }
+
   app.get('/api/users', findAllUsers)
   app.get('/api/users/:uid', findUserByID)
 
@@ -64,6 +82,9 @@ const UsersController = (app) => {
   app.post('/api/logout', logout)
 
   app.put('/api/users/username/:uname', updateCurrentUserProfileByUserName)
+  app.put('/api/users/followercount/:uid', increaseUserFollowerCountByUserID)
+  app.put('/api/users/followingcount/:uid', increaseUserFollowingCountByUserID)
+
 }
 
 export default UsersController

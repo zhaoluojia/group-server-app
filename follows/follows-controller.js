@@ -21,5 +21,5 @@ const createFollow = async (req, res) => {
 export default (app) => {
   app.get('/api/follows/followers/:fid', findFollowsByFollowerID);
   app.get('/api/follows/leaders/:lid', findFollowsByLeaderID);
-  app.post('/api/home', createFollow)
+  app.post('/api/follows', createFollow)
 };

@@ -20,3 +20,11 @@ export const findByCredentials = async ({username, password}) =>
 export const updateCurrentUserProfileByUserName = async (uname, user) => {
   await usersModel.updateOne({username: uname},{$set: user})
 }
+
+export const updateUserFollowerCountByUserID = async (uid, newNumber) => {
+  await usersModel.findOneAndUpdate({_id: uid}, {followersCount: newNumber})
+}
+
+export const updateUserFollowingCountByUserID = async (uid, newNumber) => {
+  await usersModel.findOneAndUpdate({_id: uid}, {followingCount: newNumber})
+}
