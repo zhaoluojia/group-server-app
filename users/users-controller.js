@@ -1,8 +1,4 @@
 import * as dao from './users-dao.js';
-import {
-  updateUserFollowerCountByUserID,
-  updateUserFollowingCountByUserID
-} from "./users-dao.js";
 
 const UsersController = (app) => {
   const findUserByID = async (req, res) => {
