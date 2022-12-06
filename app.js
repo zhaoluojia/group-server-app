@@ -32,9 +32,12 @@ app.use(session({
   secret: CONNECTION_STRING,
   resave: false,
   saveUninitialized: true,
+  proxy: true,
+  name: 'GroupYealpApp',
   cookie: {
     secure: false,
-    httpOnly: false
+    httpOnly: false,
+    sameSite: 'none'
   }
 }))
 app.use(express.json());
