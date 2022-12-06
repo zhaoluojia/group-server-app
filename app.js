@@ -28,7 +28,7 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }));
 app.use(session({
-  secret: 'thisismysecrctekeyfhrgfgrfrty84fwir767', //TODO: change this to a environment variable
+  secret: CONNECTION_STRING,
   resave: false,
   saveUninitialized: true,
   cookie: {
