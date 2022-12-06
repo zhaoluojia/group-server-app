@@ -35,7 +35,7 @@ app.use(session({
   proxy: true,
   name: 'GroupYealpApp',
   cookie: {
-    secure: false,
+    secure: true,
     httpOnly: false,
     sameSite: 'none'
   }
