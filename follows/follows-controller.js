@@ -18,8 +18,16 @@ const createFollow = async (req, res) => {
   res.json(newFollow)
 }
 
+const findFollowByIDs = async (req, res) => {
+  const fid = req.params.fid;
+  const lid = req.params.lid;
+  const follow = await followsDao.findFollowByIDs(fid, lid);
+  res.json(follow);
+}
+
 export default (app) => {
   app.get('/api/follows/followers/:fid', findFollowsByFollowerID);
   app.get('/api/follows/leaders/:lid', findFollowsByLeaderID);
+  app.get('/api/follows/follower/:fid/leader/:lid', findFollowByIDs);
   app.post('/api/follows', createFollow)
 };
