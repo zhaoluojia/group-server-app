@@ -25,19 +25,19 @@ mongoose.connect(CONNECTION_STRING, options);
 const app = express();
 app.use(cors({
   credentials: true,
-  origin: 'https://chimerical-crisp-48495d.netlify.app'
-  // origin: 'http://localhost:3000'
+  // origin: 'https://chimerical-crisp-48495d.netlify.app'
+  origin: 'http://localhost:3000'
 }));
 app.use(session({
   secret: CONNECTION_STRING,
   resave: false,
   saveUninitialized: true,
-  proxy: true,
-  name: 'GroupYealpApp',
+  // proxy: true,
+  // name: 'GroupYealpApp',
   cookie: {
-    secure: true,
+    secure: false,
     httpOnly: false,
-    sameSite: 'none'
+    // sameSite: 'none'
   }
 }))
 app.use(express.json());
